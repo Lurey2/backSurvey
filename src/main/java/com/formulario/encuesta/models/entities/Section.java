@@ -42,7 +42,7 @@ public class Section {
     private byte order;
 
     @Setter(AccessLevel.NONE)
-    @OneToMany(cascade = CascadeType.ALL ,  mappedBy = "section" , fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL ,  mappedBy = "section" , fetch = FetchType.EAGER , orphanRemoval = true)
     private List<Question> questions;
 
     @JoinColumn(nullable = false , name = "id_survey" , referencedColumnName = "idSurvey")

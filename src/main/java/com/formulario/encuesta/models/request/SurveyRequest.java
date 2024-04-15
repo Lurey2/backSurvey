@@ -22,6 +22,7 @@ public class SurveyRequest {
     private boolean score;
     private boolean showPublic;
     private boolean showEdit ;
+    private boolean repeatForm;
     private List<UserDto> sharedUsers ;
 
 }

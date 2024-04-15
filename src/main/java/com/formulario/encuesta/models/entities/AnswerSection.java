@@ -43,7 +43,7 @@ public class AnswerSection {
 
 
     @Setter(AccessLevel.NONE)
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "answerSection" ,  fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "answerSection" ,  fetch = FetchType.EAGER , orphanRemoval = true)
     private List<AnswerQuestion> answerQuestions;
 
     public void setAnswerQuestions(List<AnswerQuestion> answerOptions){

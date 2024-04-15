@@ -63,7 +63,7 @@ public interface AnswerDtoMapper {
                         questionDtoList.add(questionEntity);
                         
                     } );
-                   sectionDto.setAnswerOptions(questionDtoList);
+                   sectionDto.setAnswerQuestions(questionDtoList);
                 };
                 sectionDTOList.add(sectionDto);
             });

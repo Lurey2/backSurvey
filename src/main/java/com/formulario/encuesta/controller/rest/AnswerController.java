@@ -30,15 +30,14 @@ public class AnswerController {
 
     private final AnswerService service;
 
-    
-    @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<AnswerDto>> getAll() {
-        return new ResponseEntity<>( service.getAll() ,HttpStatus.OK) ;
-    }
-
     @GetMapping( path = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AnswerDto> getById(@PathVariable Long id) {
         return new ResponseEntity<>( service.findById(id) ,HttpStatus.OK) ;
+    }
+
+    @GetMapping( path = "/findByIdSurvey/{idSurvey}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<AnswerDto>> findByIdSurvey(@PathVariable Long idSurvey) {
+        return new ResponseEntity<>( service.findByIdSurvey(idSurvey) ,HttpStatus.OK) ;
     }
 
 

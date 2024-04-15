@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class AnswerSectionDto {
     
     private Long id;
-    private List<AnswerQuestionDto> answerOptions;
+    private List<AnswerQuestionDto> answerQuestions;
 
 }

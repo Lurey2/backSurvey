@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.formulario.encuesta.common.exception.ControllerException;
 import com.formulario.encuesta.common.utils.builder.ErrorJsonBuilder;
 import com.formulario.encuesta.common.utils.constanst.ControllerConstant;
+import com.formulario.encuesta.models.dto.SurveyAnswerDTO;
 import com.formulario.encuesta.models.dto.SurveyDto;
 import com.formulario.encuesta.models.dto.SurveyPublicDto;
 import com.formulario.encuesta.models.dto.SurveyUserDTO;
@@ -110,6 +111,17 @@ public class SurveyServiceImpl implements SurveyService {
             return null;
         }
         return mapperDto.toDomain(entity);
+    }
+
+    @Override
+    public Page<SurveyAnswerDTO> findSurveyAnswerByUser(Long idUser, String filterValue, Pageable pageable ) {
+
+      
+        if (filterValue.isEmpty() ){
+            return repo.findSurveyAnswerByUser(idUser,pageable );
+        }
+        return repo.findSurveyAnswerByUserAndFilter(idUser, filterValue, pageable);
+       
     }
   
     

@@ -54,7 +54,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             var jwt = jwtService.generateToken(user);
             return JwtAuthenticationResponse.builder().token(jwt).build();
         } catch (Exception e) {
-            throw new ControllerException(HttpStatus.UNAUTHORIZED,
+            throw new ControllerException(HttpStatus.BAD_REQUEST,
             new ErrorJsonBuilder("Error", "Invalidemail or password"));
         }
 

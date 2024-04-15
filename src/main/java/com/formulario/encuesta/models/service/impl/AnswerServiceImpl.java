@@ -77,4 +77,10 @@ public class AnswerServiceImpl implements  AnswerService {
         repo.deleteById(id);
     }
 
+
+    @Override
+    public List<AnswerDto> findByIdSurvey(Long idSurvey) {
+        return repo.findByIdSurvey(idSurvey).stream().map(mapperDto::toDomain).collect(Collectors.toList());
+    }
+
 }

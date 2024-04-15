@@ -1,9 +1,15 @@
 package com.formulario.encuesta.models.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -61,8 +67,20 @@ public class Survey {
     @Column(nullable = false )
     private boolean showEdit ;
     
+    @Column(nullable = false )
+    private boolean repeatForm ;
+    
+    @CreationTimestamp
+    @Column(updatable = false)
+    @JsonSerialize(using = ToStringSerializer.class)
+    private LocalDateTime createdAt;
+    
+    @UpdateTimestamp
+    @JsonSerialize(using = ToStringSerializer.class)
+    private LocalDateTime updatedAt;
+    
     @Setter(AccessLevel.NONE)
-    @OneToMany(cascade = CascadeType.ALL ,  mappedBy = "survey" , fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL ,  mappedBy = "survey" , fetch = FetchType.EAGER , orphanRemoval = true)
     private List<Section> sections;
 
     @ManyToMany(cascade =  CascadeType.REFRESH , fetch = FetchType.EAGER  )

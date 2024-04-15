@@ -14,15 +14,13 @@ import com.formulario.encuesta.models.entities.Option;
 import com.formulario.encuesta.models.entities.Question;
 import com.formulario.encuesta.models.entities.Section;
 import com.formulario.encuesta.models.entities.Survey;
-import com.formulario.encuesta.models.entities.User;
 import com.formulario.encuesta.models.request.AnswerRequest;
 import com.formulario.encuesta.models.request.AnswerSectionRequest;
-import com.formulario.encuesta.models.request.SectionRequest;
-import com.formulario.encuesta.models.request.SurveyRequest;
-
 @Mapper(componentModel = "spring") 
 public interface AnswerRequestMapper {
     
+    @Mapping( target =  "createdAt" , ignore = true)
+    @Mapping( target =  "idAnswer" , ignore = true)
     @Mapping( source = "idSurvey", target = "survey" , qualifiedByName = "setSurvey")
     @Mapping( source = "answerSections", target = "answerSections" , qualifiedByName = "sectionsMapping" )
     Answer toDomain(AnswerRequest request);

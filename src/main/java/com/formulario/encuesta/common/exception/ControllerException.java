@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import com.formulario.encuesta.common.utils.builder.ErrorJsonBuilder;
 
 public class ControllerException extends RuntimeException  {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 1L;
     private HttpStatus errorCode;
     private ErrorJsonBuilder errorMessage;
 
@@ -38,6 +38,4 @@ public class ControllerException extends RuntimeException  {
         return this.errorMessage.getError();       
     }
     
-
-
 }

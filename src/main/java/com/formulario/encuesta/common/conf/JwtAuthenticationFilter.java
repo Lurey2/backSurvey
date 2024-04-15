@@ -4,6 +4,7 @@ package com.formulario.encuesta.common.conf;
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
@@ -37,21 +38,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
-        System.out.println("entra por aqui");
+        System.out.println(1);
+        System.out.println(response.getStatus());
         if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, "Bearer ")) {
-            System.out.println("entra por aqui");
             filterChain.doFilter(request, response);
             return;
         }
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserName(jwt);
-        System.out.println(userEmail);
-        System.out.println(1);
+        System.out.println(2);
+
         if (StringUtils.isNotEmpty(userEmail)
                 && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.userDetailsService()
                     .loadUserByUsername(userEmail);
-                    System.out.println(2);
+                    System.out.println(3);
             if (jwtService.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
@@ -60,15 +61,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 context.setAuthentication(authToken);
                 SecurityContextHolder.setContext(context);
             }
-            System.out.println(3);
-        }else {
-            SecurityContext context = SecurityContextHolder.createEmptyContext();
-            context.setAuthentication(new UsernamePasswordAuthenticationToken(
-                "ExpiredUser", null, null));
-            SecurityContextHolder.setContext(context);
+            System.out.println(4);
         }
         
-        System.out.println(4);
+        System.out.println(6);
         filterChain.doFilter(request, response);
     }
 }

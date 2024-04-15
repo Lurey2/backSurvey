@@ -1,5 +1,6 @@
 package com.formulario.encuesta.models.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,6 +22,9 @@ public class SurveyDto {
     private boolean score;
     private boolean showPublic;
     private boolean showEdit ;
+    private boolean repeatForm;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private List<UserDto> sharedUsers ;
     private List<SectionDto> sections;
 

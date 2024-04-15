@@ -1,11 +1,17 @@
 package com.formulario.encuesta.models.entities;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,6 +54,16 @@ public class User  implements UserDetails{
     
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    @JsonSerialize(using = ToStringSerializer.class)
+    private LocalDateTime createdAt;
+    
+    @UpdateTimestamp
+    @Column
+    @JsonSerialize(using = ToStringSerializer.class)
+    private LocalDateTime updatedAt;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

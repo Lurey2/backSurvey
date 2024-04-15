@@ -49,7 +49,7 @@ public class Question {
 
     
     @Setter(AccessLevel.NONE)
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "question" ,  fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "question" ,  fetch = FetchType.EAGER , orphanRemoval = true)
     private List<Option> options;
 
 

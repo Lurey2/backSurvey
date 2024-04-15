@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
+import com.formulario.encuesta.models.dto.SurveyAnswerDTO;
 import com.formulario.encuesta.models.dto.SurveyDto;
 import com.formulario.encuesta.models.dto.SurveyPublicDto;
 import com.formulario.encuesta.models.dto.SurveyUserDTO;
@@ -28,4 +29,6 @@ public interface SurveyService {
     Page<SurveyUserDTO> findPageableByUserId(Long idUser , Pageable pageable );
 
     SurveyDto findByCode(String code);
+
+    Page<SurveyAnswerDTO> findSurveyAnswerByUser(Long idUser , String filterValue, Pageable pageable);
 }
